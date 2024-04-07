@@ -25,6 +25,13 @@ public sealed class ApplicationDbContext : DbContext
         base.OnModelCreating(builder);
     }
 
+    public override int SaveChanges()
+    {
+        //Some change on my entities
+
+        return base.SaveChanges();
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //data source=k2.liara.cloud,33504;Database=shopDb;User ID=sa;Password=hfa4HxYHKfFvrf5aAuj8OKAx;encrypt=false;Trust Server Certificate=true;
