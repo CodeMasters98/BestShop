@@ -1,9 +1,14 @@
-﻿namespace ProductService.Api.Entities;
+﻿#nullable disable
 
-public class Product
+using ProductService.Api.Contracts;
+
+namespace ProductService.Api.Entities;
+
+public class Product: BaseEntity<int>
 {
-    public int Id { get; set; }
     public string Name { get; set; }
+    public string BrandName { get; set; }
     public decimal TotaPrice { get; set; }
-    public DateTime CreateAt { get; set; }
+
+    public ICollection<Tag> Tags { get; set; }
 }

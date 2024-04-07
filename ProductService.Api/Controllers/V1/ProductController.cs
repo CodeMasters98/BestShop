@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using ProductService.Api.Business;
 using ProductService.Api.Contracts;
 using ProductService.Api.Dtos.Product;
 using ProductService.Api.Entities;
@@ -16,6 +15,7 @@ public class ProductController : BaseController
     private readonly IProductBusiness _productBusiness;
     private readonly IMapper _mapper;
     private readonly CustomSetting _customSetting;
+
     public ProductController(IProductBusiness productBusiness, IMapper mapper,IOptionsMonitor<CustomSetting> customSetting)
     {
         _customSetting = customSetting.CurrentValue;
@@ -23,7 +23,6 @@ public class ProductController : BaseController
         _productBusiness = productBusiness;
     }
    
-
     [HttpGet]
     [Route("")]
     public IActionResult Get()

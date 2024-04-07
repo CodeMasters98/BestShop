@@ -2,7 +2,7 @@
 
 namespace ProductService.Api.Dtos.Product;
 
-public record AddProductDto(string name,decimal price);
+public record AddProductDto(string name,decimal price,string brandName);
 
 public class AddProductDtoValidator : AbstractValidator<AddProductDto>
 {
