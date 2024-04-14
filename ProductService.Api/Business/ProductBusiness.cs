@@ -1,4 +1,5 @@
-﻿using ProductService.Api.Contracts;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductService.Api.Contracts;
 using ProductService.Api.Entities;
 using ProductService.Api.Persistence.Contexts;
 
@@ -12,9 +13,9 @@ public class ProductBusiness: IProductBusiness
         _context = context;
     }
 
-    public List<Product> GetProducts()
+    public async Task<List<Product>> GetProducts()
     {
-        var products = _context.Products.ToList();
+        var products = await _context.Products.ToListAsync();
         return products;
     }
 
@@ -24,9 +25,9 @@ public class ProductBusiness: IProductBusiness
         return cnt;
     }
 
-    public Product GetProductById(int id)
+    public async Task<Product> GetProductById(int id)
     {
-        var product = _context.Products.Where(x => x.Id == id).FirstOrDefault();
+        var product = await _context.Products.Where(x => x.Id == id).FirstOrDefaultAsync();
         return product;
     }
 

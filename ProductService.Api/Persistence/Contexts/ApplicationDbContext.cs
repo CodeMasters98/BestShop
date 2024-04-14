@@ -19,6 +19,10 @@ public sealed class ApplicationDbContext : DbContext
         //Set Schema name
         builder.HasDefaultSchema("BASE");
 
+        builder.Entity<Category>().Property<DateTime>("UpdateAt");
+        builder.Entity<Tag>().Property<DateTime>("UpdateAt");
+        builder.Entity<User>().Property<DateTime>("UpdateAt");
+
         //Atomate Rgeistartion configration
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 

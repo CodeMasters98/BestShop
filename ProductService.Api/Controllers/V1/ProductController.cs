@@ -25,9 +25,9 @@ public class ProductController : BaseController
    
     [HttpGet]
     [Route("")]
-    public IActionResult Get()
+    public async Task<IActionResult> Get()
     {
-        var products = _productBusiness.GetProducts();
+        var products = await _productBusiness.GetProducts();
         return Ok(products);
     }
 
@@ -38,12 +38,9 @@ public class ProductController : BaseController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
-        var product = _productBusiness.GetProductById(id);
+        var product = await _productBusiness.GetProductById(id);
         if (product == null)
             return NotFound();
-
-        product.Name = $"{_customSetting.strSetting} {product.Name}";
-
         return Ok(product);
     }
 
