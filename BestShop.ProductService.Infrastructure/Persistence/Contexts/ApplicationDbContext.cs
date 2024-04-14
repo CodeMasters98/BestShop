@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProductService.Api.Entities;
+﻿using BestShop.ProductService.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace ProductService.Api.Persistence.Contexts;
+namespace BestShop.ProductService.Infrastructure.Persistence.Contexts;
 
 public sealed class ApplicationDbContext : DbContext
 {

@@ -1,4 +1,4 @@
-﻿namespace ProductService.Api.Contracts;
+﻿namespace BestShop.ProductService.Domain.Contracts;
 
 public abstract class BaseEntity<T>
 {

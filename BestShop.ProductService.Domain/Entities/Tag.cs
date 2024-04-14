@@ -1,6 +1,7 @@
-﻿using ProductService.Api.Contracts;
+﻿
+using BestShop.ProductService.Domain.Contracts;
 
-namespace ProductService.Api.Entities;
+namespace BestShop.ProductService.Domain.Entities;
 
 public class Tag: BaseEntity<int>
 {

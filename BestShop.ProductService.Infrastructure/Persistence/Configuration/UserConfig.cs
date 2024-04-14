@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BestShop.ProductService.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ProductService.Api.Entities;
 
-namespace ProductService.Api.Persistence.Configuration;
+namespace BestShop.ProductService.Infrastructure.Persistence.Configuration;
 
 public class UserConfig : IEntityTypeConfiguration<User>
 {

@@ -1,8 +1,9 @@
 ﻿#nullable disable
 
-using ProductService.Api.Contracts;
 
-namespace ProductService.Api.Entities;
+using BestShop.ProductService.Domain.Contracts;
+
+namespace BestShop.ProductService.Domain.Entities;
 
 public class Category : BaseEntity<int>
 {

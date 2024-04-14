@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ProductService.Api.Contracts;
-using ProductService.Api.Entities;
-using ProductService.Api.Persistence.Contexts;
+﻿using BestShop.ProductService.Domain.Entities;
+using BestShop.ProductService.Infrastructure.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 
-namespace ProductService.Api.Business;
+namespace BestShop.ProductService.Application.Business;
 
 public class ProductBusiness: IProductBusiness
 {

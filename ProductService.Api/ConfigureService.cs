@@ -1,5 +1,4 @@
 ﻿using FluentValidation.AspNetCore;
-using ProductService.Api.Business;
 using ProductService.Api.Contracts;
 using ProductService.Api.Profiles;
 
