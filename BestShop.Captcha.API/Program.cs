@@ -1,6 +1,7 @@
 using BestShop.Captcha.API.Dtos;
 using BestShop.Captcha.API.Entities;
 using BestShop.Captcha.API.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Redis 
+builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("CaptchaService"));
 
 var app = builder.Build();
 
@@ -39,10 +43,4 @@ app.MapPost("/GenerateImage", async (AddCaptchaDto dto, ApplicationDbContext dbC
 .ProducesProblem(400)
 .WithOpenApi();
 
-
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
