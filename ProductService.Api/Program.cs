@@ -10,8 +10,8 @@ string connectionString = builder.Configuration.GetConnectionString("ProductDb")
 
 // Add services to the container.
 builder.Services
-    .RegisterPresentationServices()
-    .RegisterInfrastructureServices(connectionString);
+    .RegisterInfrastructureServices(connectionString)
+    .RegisterPresentationServices();
 
 //builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.Configure<CustomSetting>(builder.Configuration.GetSection("CustomSetting"));

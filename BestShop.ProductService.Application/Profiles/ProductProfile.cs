@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using ProductService.Api.Dtos.Product;
-using ProductService.Api.Entities;
+using BestShop.ProductService.Application.Dtos.Product;
+using BestShop.ProductService.Domain.Entities;
 
-namespace ProductService.Api.Profiles;
+namespace BestShop.ProductService.Application.Profiles;
 
 public class ProductProfile : Profile
 {

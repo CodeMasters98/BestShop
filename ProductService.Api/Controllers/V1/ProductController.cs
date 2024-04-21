@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
+using BestShop.ProductService.Application.Contracts;
+using BestShop.ProductService.Application.Dtos.Product;
+using BestShop.ProductService.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using ProductService.Api.Contracts;
-using ProductService.Api.Dtos.Product;
-using ProductService.Api.Entities;
 using ProductService.Api.Shared.Configs;
 using System.Net.Mime;
 
@@ -12,11 +12,11 @@ namespace ProductService.Api.Controllers.V1;
 
 public class ProductController : BaseController
 {
-    private readonly IProductBusiness _productBusiness;
+    private readonly IProductService _productBusiness;
     private readonly IMapper _mapper;
     private readonly CustomSetting _customSetting;
 
-    public ProductController(IProductBusiness productBusiness, IMapper mapper,IOptionsMonitor<CustomSetting> customSetting)
+    public ProductController(IProductService productBusiness, IMapper mapper,IOptionsMonitor<CustomSetting> customSetting)
     {
         _customSetting = customSetting.CurrentValue;
         _mapper = mapper;

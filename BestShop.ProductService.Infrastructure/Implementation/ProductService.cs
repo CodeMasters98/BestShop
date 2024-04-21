@@ -1,13 +1,14 @@
-﻿using BestShop.ProductService.Domain.Entities;
+﻿using BestShop.ProductService.Application.Contracts;
+using BestShop.ProductService.Domain.Entities;
 using BestShop.ProductService.Infrastructure.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace BestShop.ProductService.Application.Business;
+namespace BestShop.ProductService.Infrastructure.Implementation;
 
-public class ProductBusiness: IProductBusiness
+public class ProductService : IProductService
 {
     private readonly ApplicationDbContext _context;
-    public ProductBusiness(ApplicationDbContext context)
+    public ProductService(ApplicationDbContext context)
     {
         _context = context;
     }

@@ -1,4 +1,4 @@
-﻿namespace ProductService.Api.Dtos.Product;
+﻿namespace BestShop.ProductService.Application.Dtos.Product;
 
 //public record ProductDto
 //{

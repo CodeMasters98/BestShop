@@ -1,6 +1,5 @@
-﻿using FluentValidation.AspNetCore;
-using ProductService.Api.Contracts;
-using ProductService.Api.Profiles;
+﻿using BestShop.ProductService.Application.Profiles;
+using FluentValidation.AspNetCore;
 
 namespace ProductService.Api
 {
@@ -8,8 +7,6 @@ namespace ProductService.Api
     {
         public static IServiceCollection RegisterPresentationServices(this IServiceCollection services)
         {
-            services.AddScoped<IProductBusiness, ProductBusiness>();
-
             services.AddAutoMapper(typeof(ProductProfile));
             services.AddFluentValidationAutoValidation();
             return services;

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BestShop.ProductService.Application\BestShop.ProductService.Application.csproj" />
     <ProjectReference Include="..\BestShop.ProductService.Domain\BestShop.ProductService.Domain.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ProductService.Api.Dtos.Product;
+namespace BestShop.ProductService.Application.Dtos.Product;
 
 public record AddProductDto(string name,decimal price,string brandName);
 
