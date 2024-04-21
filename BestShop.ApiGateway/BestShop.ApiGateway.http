@@ -1,0 +1,6 @@
+@BestShop.ApiGateway_HostAddress = http://localhost:5062
+
+GET {{BestShop.ApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
