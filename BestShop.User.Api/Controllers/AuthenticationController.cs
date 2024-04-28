@@ -6,6 +6,7 @@ using System.Net.Mime;
 
 namespace BestShop.User.Api.Controllers;
 
+[ApiController]
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
