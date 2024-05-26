@@ -17,7 +17,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost]
-    [Route("")]
+    [Route("Login")]
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -29,7 +29,7 @@ public class AuthenticationController : ControllerBase
 
 
     [HttpPost]
-    [Route("")]
+    [Route("Register")]
     [Consumes(MediaTypeNames.Application.Json)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status201Created)]

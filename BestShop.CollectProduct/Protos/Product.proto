@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "BestShop.CollectProduct";
+
+// The greeting service definition.
+//service grpc => intreface 
+service Product {
+  // Sends a greeting
+  rpc AddProduct (AddProductRequest) returns (AddProductResponse);
+}
+
+//message grpc => DTO in .net
+// The request message containing the user's name.
+message AddProductRequest {
+  string name = 1;
+  int32 count = 2;
+
+}
+
+// The response message containing the greetings.
+message AddProductResponse {
+  string message = 1;
+}
