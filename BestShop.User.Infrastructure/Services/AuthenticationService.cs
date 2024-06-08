@@ -1,4 +1,5 @@
-﻿using Azure.Core;
+﻿using Azure;
+using Azure.Core;
 using BestShop.User.Application.DTOs;
 using BestShop.User.Application.Interfaces;
 using BestShop.User.Domain.Settings;
@@ -6,6 +7,7 @@ using BestShop.User.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
@@ -34,14 +36,11 @@ public class AuthenticationService : IAuthenticationService
     {
         var user = await _userManager.FindByEmailAsync(dto.Email);
         if (user is null)
-        {
             return null;
-        }
+
         var result = await _signInManager.PasswordSignInAsync(user.UserName, dto.Password, false, lockoutOnFailure: false);
         if (!result.Succeeded)
-        {
             return null;
-        }
         var jwtToken = await GenerateJWToken(user);
         AuthenticationResponse response = new AuthenticationResponse();
         response.Id = user.Id;
@@ -56,7 +55,42 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<bool> Register(RegisterDto dto)
     {
-        return true;
+        var userWithSameUserName = await _userManager.FindByNameAsync(dto.Username);
+        if (userWithSameUserName != null)
+        {
+            //$"Username '{request.UserName}' is already taken."
+            throw new Exception();
+        }
+        var user = new ApplicationUser
+        {
+            Email = dto.Email,
+            FirstName = dto.FirstName,
+            LastName = dto.LastName,
+            UserName = dto.Username
+        };
+        var userWithSameEmail = await _userManager.FindByEmailAsync(dto.Email);
+        if (userWithSameEmail == null)
+        {
+            var result = await _userManager.CreateAsync(user, dto.Password);
+            if (result.Succeeded)
+            {
+                //await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
+                //var verificationUri = await SendVerificationEmail(user, origin);
+                //TODO: Attach Email Service here and configure it via appsettings
+                //await _emailService.SendAsync(new Application.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
+                //return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
+                throw new Exception();
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+        else
+        {
+            //$"Email {request.Email} is already registered."
+            throw new Exception();
+        }
     }
 
     private async Task<JwtSecurityToken> GenerateJWToken(ApplicationUser user)
@@ -81,7 +115,7 @@ public class AuthenticationService : IAuthenticationService
         .Union(userClaims)
         .Union(roleClaims);
 
-        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("jaskdnjkasaskjdbnasjkd"));
+        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("jaskdkdsfnksjdnfkjsdnfjksdnfjksdfnsjkdfnkjsdnfjsdjfksndfkjsnnjkasaskjdbnasjkd"));
         var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
         var jwtSecurityToken = new JwtSecurityToken(

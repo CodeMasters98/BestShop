@@ -20,7 +20,10 @@ public static class ConfigureServices
 {
     public static IServiceCollection RegisterInfrastructureServices(this IServiceCollection services,IConfiguration configuration, string connectionString)
     {
-        services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
+        if (configuration.GetValue<bool>("UseInMemoryDatabase"))
+            services.AddDbContext<ApplicationDbContext>(options =>options.UseInMemoryDatabase("ApplicationDb"));
+        else
+            services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServer(connectionString));
 
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(

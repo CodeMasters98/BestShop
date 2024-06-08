@@ -23,10 +23,9 @@ public class AuthenticationController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> Login([FromBody] LoginDto dto)
     {
-        _authenticationService.Login(dto);
-        return Ok();
+        var result = await _authenticationService.Login(dto);
+        return Ok(result);
     }
-
 
     [HttpPost]
     [Route("Register")]
@@ -35,7 +34,7 @@ public class AuthenticationController : ControllerBase
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> Register([FromBody] RegisterDto dto)
     {
-        _authenticationService.Register(dto);
-        return Ok();
+        var result = await _authenticationService.Register(dto);
+        return Ok(result);
     }
 }
