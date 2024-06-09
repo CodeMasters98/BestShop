@@ -9,7 +9,6 @@ using System.Net.Mime;
 
 namespace ProductService.Api.Controllers.V1;
 
-
 public class ProductController : BaseController
 {
     private readonly IProductService _productBusiness;

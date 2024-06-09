@@ -7,6 +7,7 @@ using System.Net.Mime;
 namespace BestShop.User.Api.Controllers;
 
 [ApiController]
+[Route("/api/v1/[controller]")]
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authenticationService;

@@ -1,17 +1,15 @@
-﻿using Azure;
-using Azure.Core;
-using BestShop.User.Application.DTOs;
+﻿using BestShop.User.Application.DTOs;
+using BestShop.User.Application.Exceptions;
 using BestShop.User.Application.Interfaces;
 using BestShop.User.Domain.Settings;
 using BestShop.User.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using System.Data;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
 using System.Security.Claims;
 using System.Text;
+using static BestShop.User.Application.Interfaces.Wrappers;
 
 namespace BestShop.User.Infrastructure.Services;
 
@@ -32,15 +30,18 @@ public class AuthenticationService : IAuthenticationService
         _signInManager = signInManager;
     }
 
-    public async Task<AuthenticationResponse> Login(LoginDto dto)
+    public async Task<Response<AuthenticationResponse>> Login(LoginDto dto)
     {
         var user = await _userManager.FindByEmailAsync(dto.Email);
+
+        //Response Pattern
         if (user is null)
-            return null;
+            throw new ApiException($"user is bull please register!");
 
         var result = await _signInManager.PasswordSignInAsync(user.UserName, dto.Password, false, lockoutOnFailure: false);
         if (!result.Succeeded)
-            return null;
+            throw new ApiException($"{result.Succeeded.ToString()}");
+
         var jwtToken = await GenerateJWToken(user);
         AuthenticationResponse response = new AuthenticationResponse();
         response.Id = user.Id;
@@ -50,17 +51,15 @@ public class AuthenticationService : IAuthenticationService
         var rolesList = await _userManager.GetRolesAsync(user).ConfigureAwait(false);
         response.Roles = rolesList.ToList();
         response.IsVerified = user.EmailConfirmed;
-        return response;
+        return new Response<AuthenticationResponse>(response);
     }
 
-    public async Task<bool> Register(RegisterDto dto)
+    public async Task<Response<bool>> Register(RegisterDto dto)
     {
         var userWithSameUserName = await _userManager.FindByNameAsync(dto.Username);
-        if (userWithSameUserName != null)
-        {
-            //$"Username '{request.UserName}' is already taken."
-            throw new Exception();
-        }
+        if (userWithSameUserName != null)     
+            throw new ApiException($"Username '{userWithSameUserName.UserName}' is already taken.");
+
         var user = new ApplicationUser
         {
             Email = dto.Email,
@@ -69,28 +68,16 @@ public class AuthenticationService : IAuthenticationService
             UserName = dto.Username
         };
         var userWithSameEmail = await _userManager.FindByEmailAsync(dto.Email);
-        if (userWithSameEmail == null)
+        if (userWithSameEmail is null)
         {
             var result = await _userManager.CreateAsync(user, dto.Password);
             if (result.Succeeded)
-            {
-                //await _userManager.AddToRoleAsync(user, Roles.Basic.ToString());
-                //var verificationUri = await SendVerificationEmail(user, origin);
-                //TODO: Attach Email Service here and configure it via appsettings
-                //await _emailService.SendAsync(new Application.DTOs.Email.EmailRequest() { From = "mail@codewithmukesh.com", To = user.Email, Body = $"Please confirm your account by visiting this URL {verificationUri}", Subject = "Confirm Registration" });
-                //return new Response<string>(user.Id, message: $"User Registered. Please confirm your account by visiting this URL {verificationUri}");
-                throw new Exception();
-            }
+                return new Response<bool>(true);
             else
-            {
-                throw new Exception();
-            }
+                throw new ApiException(result.Succeeded.ToString());
         }
         else
-        {
-            //$"Email {request.Email} is already registered."
-            throw new Exception();
-        }
+            throw new ApiException($"Please enter valid email!");
     }
 
     private async Task<JwtSecurityToken> GenerateJWToken(ApplicationUser user)
@@ -126,4 +113,5 @@ public class AuthenticationService : IAuthenticationService
             signingCredentials: signingCredentials);
         return jwtSecurityToken;
     }
+
 }

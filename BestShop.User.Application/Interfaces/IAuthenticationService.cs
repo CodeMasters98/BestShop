@@ -1,9 +1,11 @@
 ﻿using BestShop.User.Application.DTOs;
+using static BestShop.User.Application.Interfaces.Wrappers;
 
 namespace BestShop.User.Application.Interfaces;
 
 public interface IAuthenticationService
 {
-    Task<AuthenticationResponse> Login(LoginDto dto);
-    Task<bool> Register(RegisterDto dto);
+    Task<Response<AuthenticationResponse>> Login(LoginDto dto);
+
+    Task<Response<bool>> Register(RegisterDto dto);
 }
