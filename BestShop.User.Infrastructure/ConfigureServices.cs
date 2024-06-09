@@ -3,7 +3,6 @@ using BestShop.User.Domain.Settings;
 using BestShop.User.Infrastructure.Context;
 using BestShop.User.Infrastructure.Models;
 using BestShop.User.Infrastructure.Services;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
