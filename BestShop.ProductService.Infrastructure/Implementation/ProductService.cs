@@ -40,4 +40,14 @@ public class ProductService : IProductService
         //Console.WriteLine(_context.Entry(product).State);
         return true;
     }
+
+    public bool DeleteProduct(int id)
+    {
+        var product = _context.Products.Where(x => x.Id == id).FirstOrDefault();
+        if (product is null) return false;
+
+        _context.Products.Remove(product);
+        _context.SaveChanges();
+        return true;
+    }
 }

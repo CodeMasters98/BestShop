@@ -67,9 +67,12 @@ public class ProductController : BaseController
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public IActionResult Delete([FromRoute] int id)
+    public IActionResult Delete([FromQuery] int id)
     {
-
-        return Ok();
+        var isDeleted = _productBusiness.DeleteProduct(id);
+        if (isDeleted)
+            return Ok();
+        else
+            return NotFound();
     }
 }
