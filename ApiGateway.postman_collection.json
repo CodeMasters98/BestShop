@@ -1,0 +1,152 @@
+{
+	"info": {
+		"_postman_id": "f564f979-4199-4a9d-8fba-cfca09d3da20",
+		"name": "ApiGateway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8075687",
+		"_collection_link": "https://speeding-crescent-612153.postman.co/workspace/Angular-02-10~7185ef16-be2f-4c5d-af59-931ce74cb76d/collection/8075687-f564f979-4199-4a9d-8fba-cfca09d3da20?action=share&source=collection_link&creator=8075687"
+	},
+	"item": [
+		{
+			"name": "GetProducts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					}
+				],
+				"url": {
+					"raw": "{{GatewayAddress}}/ProductService/api/v1/Product",
+					"host": [
+						"{{GatewayAddress}}"
+					],
+					"path": [
+						"ProductService",
+						"api",
+						"v1",
+						"Product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Test 55\",\n  \"price\": 1000,\n  \"brandName\": \"test brand\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{GatewayAddress}}/ProductService/api/v1/Product",
+					"host": [
+						"{{GatewayAddress}}"
+					],
+					"path": [
+						"ProductService",
+						"api",
+						"v1",
+						"Product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Parham\",\n  \"lastName\": \"darvishi\",\n  \"email\": \"darvishiparham14@gmail.com\",\n  \"username\": \"testDarvishi\",\n  \"password\": \"Pp@123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{GatewayAddress}}/UserService/api/v1/Authentication/Register",
+					"host": [
+						"{{GatewayAddress}}"
+					],
+					"path": [
+						"UserService",
+						"api",
+						"v1",
+						"Authentication",
+						"Register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"darvishiparham14@gmail.com\",\n  \"password\": \"Pp@123456789\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{GatewayAddress}}/UserService/api/v1/Authentication/Login",
+					"host": [
+						"{{GatewayAddress}}"
+					],
+					"path": [
+						"UserService",
+						"api",
+						"v1",
+						"Authentication",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
