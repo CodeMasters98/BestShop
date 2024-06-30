@@ -1,7 +1,9 @@
+using BestShop.ProductService.Domain.Contracts;
 using BestShop.ProductService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using ProductService.Api;
 using ProductService.Api.Middleware;
+using ProductService.Api.Services;
 using ProductService.Api.Shared.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,8 @@ builder.Services
 builder.Services.Configure<CustomSetting>(builder.Configuration.GetSection("CustomSetting"));
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
