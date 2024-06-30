@@ -23,7 +23,6 @@ public sealed class ApplicationDbContext : DbContext
 
         builder.Entity<Category>().Property<DateTime>("UpdateAt");
         builder.Entity<Tag>().Property<DateTime>("UpdateAt");
-        builder.Entity<User>().Property<DateTime>("UpdateAt");
 
         builder.RegisterAllSeeders(typeof(IBaseSeeder<>).Assembly);
 

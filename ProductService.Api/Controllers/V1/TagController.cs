@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ProductService.Api.Controllers.V1
+namespace ProductService.Api.Controllers.V1;
+
+[Authorize]
+public class TagController : BaseController
 {
-    
-    public class TagController : BaseController
-    {
 
-    }
 }

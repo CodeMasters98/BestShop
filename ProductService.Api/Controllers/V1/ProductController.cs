@@ -2,6 +2,7 @@
 using BestShop.ProductService.Application.Contracts;
 using BestShop.ProductService.Application.Dtos.Product;
 using BestShop.ProductService.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using ProductService.Api.Shared.Configs;
@@ -43,6 +44,7 @@ public class ProductController : BaseController
         return Ok(product);
     }
 
+    [Authorize]
     [HttpPost]
     [Route("")]
     [Consumes(MediaTypeNames.Application.Json)]
@@ -55,6 +57,7 @@ public class ProductController : BaseController
         return Ok();
     }
 
+    [Authorize]
     [HttpPut]
     [Route("")]
     public IActionResult Update([FromBody] UpdateProductDto productDto)
@@ -63,6 +66,7 @@ public class ProductController : BaseController
         return Ok();
     }
 
+    [Authorize]
     [HttpDelete]
     [Route("")]
     [ProducesResponseType(StatusCodes.Status200OK)]

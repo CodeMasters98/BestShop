@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
 
-namespace ProductService.Api.Controllers.V1
-{
-    public class CategoryController : BaseController
-    { 
+namespace ProductService.Api.Controllers.V1;
 
-    }
+[Authorize]
+public class CategoryController : BaseController
+{ 
+
 }

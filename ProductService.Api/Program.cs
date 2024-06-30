@@ -11,6 +11,7 @@ string connectionString = builder.Configuration.GetConnectionString("ProductDb")
 // Add services to the container.
 builder.Services
     .RegisterInfrastructureServices(connectionString)
+    .RegisterJwtServices(builder.Configuration)
     .RegisterPresentationServices();
 
 //builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
@@ -40,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

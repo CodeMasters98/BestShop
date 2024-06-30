@@ -4,16 +4,40 @@
   },
   "Routes": [
     {
-      "UpstreamPathTemplate": "/api/GetAllProducts",
-      "UpstreamHttpMethod": [ "POST" ],
-      "DownstreamPathTemplate": "/api/v1/Product",
+      "UpstreamPathTemplate": "/ProductService/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ],
+      "DownstreamPathTemplate": "/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 7081
         }
-      ]
+      ],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "SwaggerKey": "ProductServcie"
+    },
+    {
+      "UpstreamPathTemplate": "/UserService/{everything}",
+      "UpstreamHttpMethod": [ "Post", "Get", "Put", "Delete" ],
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7234
+        }
+      ],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      "DangerousAcceptAnyServerCertificateValidator": true,
+      "SwaggerKey": "UserService"
     }
   ]
 }
